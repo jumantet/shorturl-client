@@ -3,6 +3,7 @@ import axios from "axios";
 
 import "./App.css";
 
+const urlDomain = "http://localhost:3001/";
 class App extends Component {
   state = {
     originalUrl: "",
@@ -11,30 +12,22 @@ class App extends Component {
 
   shortenUrl = async () => {
     let originalUrl = this.state.originalUrl;
-    const response = await axios.post(
-      "https://short-url-julian-mantet-api.herokuapp.com/create",
-      {
-        url: originalUrl
-      }
-    );
+    const response = await axios.post(urlDomain + "/create", {
+      url: originalUrl
+    });
     this.setState({ originalUrl: "" });
     this.componentDidMount();
   };
 
   visitUrl = async url => {
-    const response = await axios.post(
-      "https://short-url-julian-mantet-api.herokuapp.com/visit",
-      {
-        shortUrl: url.shortUrl
-      }
-    );
+    const response = await axios.post(urlDomain + "/visit", {
+      shortUrl: url.shortUrl
+    });
   };
 
   componentDidMount = async () => {
     let urlList = [...this.state.urlList];
-    const response = await axios.get(
-      "https://short-url-julian-mantet-api.herokuapp.com/"
-    );
+    const response = await axios.get(urlDomain + "urls");
     urlList = response.data;
     this.setState({ urlList: urlList });
   };
