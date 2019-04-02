@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./App.css";
 
-const urlDomain = "http://localhost:3001/";
+const urlDomain = "https://short-url-julian-mantet-api.herokuapp.com/";
 class App extends Component {
   state = {
     originalUrl: "",
@@ -12,7 +12,7 @@ class App extends Component {
 
   shortenUrl = async () => {
     let originalUrl = this.state.originalUrl;
-    const response = await axios.post(urlDomain + "/create", {
+    const response = await axios.post(urlDomain + "create", {
       url: originalUrl
     });
     this.setState({ originalUrl: "" });
@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   visitUrl = async url => {
-    const response = await axios.post(urlDomain + "/visit", {
+    const response = await axios.post(urlDomain + "visit", {
       shortUrl: url.shortUrl
     });
   };
