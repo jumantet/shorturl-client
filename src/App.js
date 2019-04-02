@@ -11,22 +11,30 @@ class App extends Component {
 
   shortenUrl = async () => {
     let originalUrl = this.state.originalUrl;
-    const response = await axios.post("http://localhost:3001/create", {
-      url: originalUrl
-    });
+    const response = await axios.post(
+      "https://short-url-julian-mantet-api.herokuapp.com/create",
+      {
+        url: originalUrl
+      }
+    );
     this.setState({ originalUrl: "" });
     this.componentDidMount();
   };
 
   visitUrl = async url => {
-    const response = await axios.post("http://localhost:3001/visit", {
-      shortUrl: url.shortUrl
-    });
+    const response = await axios.post(
+      "https://short-url-julian-mantet-api.herokuapp.com/visit",
+      {
+        shortUrl: url.shortUrl
+      }
+    );
   };
 
   componentDidMount = async () => {
     let urlList = [...this.state.urlList];
-    const response = await axios.get("http://localhost:3001/urls");
+    const response = await axios.get(
+      "https://short-url-julian-mantet-api.herokuapp.com/"
+    );
     urlList = response.data;
     this.setState({ urlList: urlList });
   };
@@ -69,8 +77,8 @@ class App extends Component {
                   </a>
                 </p>
                 <p onClick={() => this.visitUrl(url)} style={{ flex: 3 }}>
-                  <a href={"http://localhost:3000/"}>
-                    {"https://short-url-JULIAN-MANTET.herokuapp.com/" +
+                  <a href={"https://short-url-julian-mantet.herokuapp.com/"}>
+                    {"https://short-url-julian-mantet.herokuapp.com/" +
                       url.shortUrl}
                   </a>
                 </p>
