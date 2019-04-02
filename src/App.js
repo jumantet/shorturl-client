@@ -12,7 +12,7 @@ class App extends Component {
 
   shortenUrl = async () => {
     let originalUrl = this.state.originalUrl;
-    const response = await axios.post(urlDomain + "create", {
+    await axios.post(urlDomain + "create", {
       url: originalUrl
     });
     this.setState({ originalUrl: "" });
@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   visitUrl = async url => {
-    const response = await axios.post(urlDomain + "visit", {
+    await axios.post(urlDomain + "visit", {
       shortUrl: url.shortUrl
     });
   };
