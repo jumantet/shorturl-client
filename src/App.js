@@ -40,6 +40,7 @@ class App extends Component {
     await axios.post(urlDomain + "visit", {
       shortUrl: url.shortUrl
     });
+    this.componentDidMount();
   };
 
   componentDidMount = async () => {
