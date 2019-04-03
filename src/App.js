@@ -3,20 +3,37 @@ import axios from "axios";
 
 import "./App.css";
 
-const urlDomain = "https://short-url-julian-mantet-api.herokuapp.com/";
+const urlDomain = "http://localhost:3000/";
 class App extends Component {
   state = {
     originalUrl: "",
     urlList: []
   };
 
+  validURL = string => {
+    var pattern = new RegExp(
+      "^(https?:\\/\\/)?" +
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
+        "((\\d{1,3}\\.){3}\\d{1,3}))" +
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
+        "(\\?[;&a-z\\d%_.~+=-]*)?" +
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    );
+    return !!pattern.test(string);
+  };
+
   shortenUrl = async () => {
     let originalUrl = this.state.originalUrl;
-    await axios.post(urlDomain + "create", {
-      url: originalUrl
-    });
-    this.setState({ originalUrl: "" });
-    this.componentDidMount();
+    if (this.validURL(originalUrl) === true) {
+      await axios.post(urlDomain + "create", {
+        url: originalUrl
+      });
+      this.setState({ originalUrl: "" });
+      this.componentDidMount();
+    } else {
+      alert("This is not a correct Url");
+    }
   };
 
   visitUrl = async url => {
