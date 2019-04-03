@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./App.css";
 
-const urlDomain = "http://localhost:3000/";
+const urlDomain = "https://short-url-julian-mantet.herokuapp.com/";
 class App extends Component {
   state = {
     originalUrl: "",
