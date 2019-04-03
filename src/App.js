@@ -87,7 +87,11 @@ class App extends Component {
                   </a>
                 </p>
                 <p onClick={() => this.visitUrl(url)} style={{ flex: 3 }}>
-                  <a href={"https://short-url-julian-mantet.herokuapp.com/"}>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={url.originalUrl}
+                  >
                     {"https://short-url-julian-mantet.herokuapp.com/" +
                       url.shortUrl}
                   </a>
